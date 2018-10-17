@@ -1,0 +1,25 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+/* custom styles*/
+.font-pos-12 {
+  font-size: 120%
+}
+.font-pos-14 {
+  font-size: 140%
+}
+.font-pos-16 {
+  font-size: 160%
+}
+.font-pos-18 {
+  font-size: 180%
+}
+.font-pos-20 {
+  font-size: 200%
+}

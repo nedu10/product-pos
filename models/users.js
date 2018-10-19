@@ -16,6 +16,22 @@ const userSchema = new Schema({
         type: String,
         required: [true, 'email is required']
     },
+    phone_no: {
+        type: String,
+        required: [true, 'phone number is required']
+    },
+    gender: {
+        type: Number,
+        required: [true, 'gender is required']
+    },
+    logged_in: {
+        type: Boolean,
+        default: false
+    },
+    user_type_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        rel: "UserType"
+    },
     password: {
         type: String,
         required: [true, 'password is required']

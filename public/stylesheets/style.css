@@ -23,3 +23,9 @@ a {
 .font-pos-20 {
   font-size: 200%
 }
+
+.pos-dark-dropdown-item:hover, .pos-dark-dropdown-item:focus {
+  color: white !important;
+  text-decoration: none !important;
+  background-color: #16181b !important;
+}

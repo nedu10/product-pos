@@ -6,34 +6,39 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link  font-pos-12" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link  font-pos-12" href="#">Cart</a>
-      </li>
-      {{!-- <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle  font-pos-12" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item  font-pos-12" href="#">Action</a>
-          <a class="dropdown-item  font-pos-12" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item  font-pos-12" href="#">Something else here</a>
-        </div>
-      </li> --}}
-      {{!-- <li class="nav-item ">
-        <a class="nav-link disabled  font-pos-12" href="#">Disabled</a>
-      </li> --}}
+        <li class="nav-item active">
+          <a class="nav-link  font-pos-12" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link  font-pos-12" href="#">Cart</a>
+        </li>
+
     </ul>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link  font-pos-12" href="/users/signup">Sign Up</a>
+    
+    <ul class="nav navbar-nav navbar-right">
+      {{#if logged_in}}
+        <li class=" nav-item dropdown">
+          <a href="#" class="mt-3 snav-link d-flex justify-content-end" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="/images/avatar-default.png"  class="img-circle special-img w-25 h-100"></a>
+            <p>{{user}}</p>
+          </a>
+
+          <div  class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
+            <a class="pos-dark-dropdown-item  dropdown-item text-white" href="#">Profile</a>
+            <div class="dropdown-divider"></div>
+            <a class="pos-dark-dropdown-item  dropdown-item text-white" href="/users/logout">Logout</a>
+          </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link  font-pos-12" href="/users/signin">Login</a>
-      </li>
+      {{/if}}
+      {{#if not_logged_in}}
+        <li class="nav-item">
+          <a class="nav-link  font-pos-12" href="/users/signup">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link  font-pos-12" href="/users/signin">Login</a>
+        </li>
+      {{/if}}
+      
     </ul>
   </div>
 </nav>

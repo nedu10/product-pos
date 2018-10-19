@@ -11,7 +11,7 @@ var flash = require('connect-flash')
 var session = require('express-session')
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// var usersRouter = require('./routes/users');
 var product = require('./routes/product/products');
 
 var app = express();
@@ -50,8 +50,15 @@ app.use(passport.session())
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+app.use((req, res, next) => {
+  res.locals.logged_in = req.isAuthenticated()
+  res.locals.not_logged_in = !req.isAuthenticated()
+  next()
+})
+
+
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// app.use('/users', usersRouter);
 app.use('/product', product)
 
 // catch 404 and forward to error handler

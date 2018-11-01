@@ -4,12 +4,24 @@ const multer = require('multer')
 const path = require('path')
 const csrf = require('csurf')
 
+
+const csrfProtection = csrf()
+
+const router = express.Router()
+
+// router.use(csrfProtection)
+
+const productPrice = require('../../models/product/product-price')
 const Product = require('../../models/product/products')
 const ProductCategory = require('../../models/product/product-categories')
-const productPrice = require('../../models/product/product-price')
 const ProductInventory = require('../../models/product/inventory')
 const Validation = require('../../middlewares/validations/inventory-middleware')
 
+function testMiddleware(req, res, next){
+    console.log('testmiddleware >> ',req.body)
+    next()
+}
+router.use(testMiddleware)
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -24,9 +36,6 @@ const productImage = multer({
     storage: storage
 }).single('product_image')
 
-
-const csrfProtection = csrf()
-const router = express.Router()
 
 router.use(testMiddleware)
 
@@ -73,7 +82,7 @@ router.get('/create', (req, res, next) => {
     })
 })
 
-router.post('/create', productImage, (req, res, next) => {
+router.post('/create', (req, res, next) => {
     var productError = []
     if (!req.body.product_description || !req.body.product_name  || !req.body.product_price) {
         if (!req.body.product_name) {
@@ -202,5 +211,6 @@ router.post('/inventory/create',Validation.inventoryValidation, (req, res, next)
     })
 
 })
+
 
 module.exports = router

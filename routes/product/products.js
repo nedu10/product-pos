@@ -21,7 +21,6 @@ function testMiddleware(req, res, next){
     console.log('testmiddleware >> ',req.body)
     next()
 }
-router.use(testMiddleware)
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -82,7 +81,7 @@ router.get('/create', (req, res, next) => {
     })
 })
 
-router.post('/create', (req, res, next) => {
+router.post('/create', productImage,  (req, res, next) => {
     var productError = []
     if (!req.body.product_description || !req.body.product_name  || !req.body.product_price) {
         if (!req.body.product_name) {

@@ -50,7 +50,7 @@ router.get('/view', Middleware.isLoggedIn, (req, res, next) => {
                 phone_no: '09099998888',
                 totalQty: element.totalQty,
                 totalPrice: element.totalPrice,
-                date: `${checkLength(new Date(element.date).getDate())} / ${checkLength(new Date(element.date).getMonth())} / ${checkLength(new Date(element.date).getFullYear())}`,
+                date: `${checkLength(new Date(element.date).getDate())} / ${checkLength(new Date(element.date).getMonth()+1)} / ${checkLength(new Date(element.date).getFullYear())}`,
                 time: `${checkLength(new Date(element.date).getHours())} : ${checkLength(new Date(element.date).getMinutes())} : ${checkLength(new Date(element.date).getSeconds())}`,
                 status: element.status
             }
@@ -88,6 +88,7 @@ router.post('/checkout', Middleware.isLoggedIn, (req, res, next) => {
         console.log('meeee2222 >> ',req.session.buy)
         const order = new Order({
             user_id: req.user[0]._id,
+            date: Date.now(),
             totalQty: 1,
             totalPrice: req.session.buy.product_price_id.product_price
         })
@@ -145,6 +146,7 @@ router.post('/checkout', Middleware.isLoggedIn, (req, res, next) => {
         console.log(req.user[0])
         const order = new Order({
             user_id: req.user[0]._id,
+            date: Date.now(),
             totalQty: req.session.cart.totalQty,
             totalPrice: req.session.cart.totalPrice
         })

@@ -1,6 +1,6 @@
-<nav class="navbar d-flex justify-content-end pr-0 fixed-top navbar-expand-lg navbar-dark bg-dark" style="height: 4em;">
+<nav class="navbar d-flex justify-content-end pr-0 fixed-top navbar-expand-lg navbar-dark " style="height: 4em; background: #000 !important;">
   {{#if success_msg}}
-  <div class="w-100  col-10 col-sm-6 col-md-4 col-lg-3 px-0" style="position: absolute !important; z-index: 100000000 !important;">
+  <div class="w-100  col-10 col-sm-6 col-md-4 col-lg-3 px-0" style="position: absolute !important; z-index: 100000000 !important; ">
     <div class="alert alert-success text-capitalize  ml-auto h-100 mb-0 no-radius alert-dismissible fade show" 
     style="font-family: Mali; border-left: 4px solid #155724">{{success_msg}}
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -9,13 +9,13 @@
     </div>
   </div>
   {{/if}}
-  <div class="container">
+  <div class="container" style="background: #000 !important;">
   <a class="navbar-brand" style="font-family:Pacifico;" href="/">{{title}}</a>
   <button class="navbar-toggler sidebar-toggler" type="button" id="sidebar-toggler">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse pos-dark-navbar-toggler pl-3 pr-3 " id="navbarSupportedContent">
+  <div class="collapse navbar-collapse pos-dark-navbar-toggler pl-3 pr-3 " id="navbarSupportedContent" style="background: #000 !important;">
     <ul class="navbar-nav mr-auto">
         {{!-- <li class="nav-item active">
           <a class="nav-link  font-pos-12" href="#">Home <span class="sr-only">(current)</span></a>
@@ -46,11 +46,11 @@
     </ul>
     
     <ul class="nav navbar-nav navbar-right">
-      {{#if check_add_inventory}}
+      {{!-- {{#if check_add_inventory}}
         <li class="nav-item">
           <a class="nav-link  font-pos-12" href="#" class="swapinventoryform" data-toggle="modal" data-target="#exampleModalCenter">Add Inventory</a>
         </li>
-      {{/if}}
+      {{/if}} --}}
       {{#if logged_in}}
         <li class=" nav-item dropdown">
           <a href="#" class="mt-2 snav-link d-flex justify-content-end" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

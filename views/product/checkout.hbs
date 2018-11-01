@@ -1,0 +1,90 @@
+{{> navbar}}
+{{> sidebar}}
+<div class="sidebar-body-container cotainer-fluid mt-5 pt-5" style="font-family: Mali;">
+    <div class="row">
+        <div class="col-lg-5 col-md-6 col-sm-8 col-10 mx-auto">
+            <div class="card no-radius">
+                <div class="card-body">
+                    <h3>Checkout</h3>
+                    <p class="font-pos-12S">Your Total <span class="text-danger" style="font-weight: bold;"># 340000</span></p>
+                    <form action="/order/checkout" method="post">
+                        <div class="row">
+                            
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="checkout-firstname" style="font-weight: bold;" >First Name</label>
+                                    <input type="text" name="first_name" id="checkout-firstname" class="form-control no-radius" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="checkout-lastname" style="font-weight: bold;">Last Name</label>
+                                    <input type="text" name="last_name" id="checkout-lastname" class="form-control no-radius" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 p-0">
+                            <div class="form-group">
+                                <label for="checkout-address" style="font-weight: bold;">Address</label>
+                                <textarea type="text" name="address" id="checkout-address"  class="form-control no-radius"  required></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="checkout-cardholdername" style="font-weight: bold;" >Card Holder Name</label>
+                                    <input type="text" name="card_holder_name"  id="checkout-cardholdername" class="form-control no-radius" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="checkout-creditcardnumber" style="font-weight: bold;">Credit Card Number</label>
+                                    <input type="text" name="credit_card_number" id="checkout-creditcardnumber" class="form-control no-radius" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="checkout-expirationmonth" style="font-weight: bold;" >Expiration Month</label>
+                                    <select type="text" name="expiration_month" id="checkout-expirationmonth" class="form-control no-radius" required>
+                                        <option value="january">January</option>
+                                        <option value="february">February</option>
+                                        <option value="march">March</option>
+                                        <option value="april">April</option>
+                                        <option value="may">May</option>
+                                        <option value="june">June</option>
+                                        <option value="july">July</option>
+                                        <option value="august">August</option>
+                                        <option value="september">September</option>
+                                        <option value="october">October</option>
+                                        <option value="november">November</option>
+                                        <option value="december">December</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="checkout-expirationyear" style="font-weight: bold;">Expiration Year</label>
+                                    <input type="number" name="expiration_year" id="checkout-expirationyear" class="form-control no-radius" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="checkout-cvc" style="font-weight: bold;">CVC</label>
+                                    <input type="number" name="cvc" id="checkout-cvc" class="form-control no-radius" required>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <hr>
+                        <div class="text-right">
+                            <a href="#" class="btn   text-white font-pos-16 btn-danger no-radius">Cancel</a>
+                            <button class="btn btn-success no-radius font-pos-16" type="submit">Buy Now</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,39 +1,80 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" style="height: 4em;">
+<nav class="navbar d-flex justify-content-end pr-0 fixed-top navbar-expand-lg navbar-dark bg-dark" style="height: 4em;">
+  {{#if success_msg}}
+  <div class="w-100  col-10 col-sm-6 col-md-4 col-lg-3 px-0" style="position: absolute !important; z-index: 100000000 !important;">
+    <div class="alert alert-success text-capitalize  ml-auto h-100 mb-0 no-radius alert-dismissible fade show" 
+    style="font-family: Mali; border-left: 4px solid #155724">{{success_msg}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+  </div>
+  {{/if}}
+  <div class="container">
   <a class="navbar-brand" style="font-family:Pacifico;" href="/">{{title}}</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler sidebar-toggler" type="button" id="sidebar-toggler">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse pos-dark-navbar-toggler pl-3 pr-3 " id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link  font-pos-12" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link  font-pos-12" href="#">Cart</a>
-      </li>
-      {{!-- <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle  font-pos-12" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item  font-pos-12" href="#">Action</a>
-          <a class="dropdown-item  font-pos-12" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item  font-pos-12" href="#">Something else here</a>
-        </div>
-      </li> --}}
-      {{!-- <li class="nav-item ">
-        <a class="nav-link disabled  font-pos-12" href="#">Disabled</a>
-      </li> --}}
+        {{!-- <li class="nav-item active">
+          <a class="nav-link  font-pos-12" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link  font-pos-12" href="/product/view">Products
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link  font-pos-12" href="/cart">Cart 
+            <span class="badge badge-success text-white">{{session.cart.totalQty}}</span>
+          </a>
+        </li> --}}
+
+
+        {{!-- <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle  font-pos-12" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item  font-pos-12" href="#">Action</a>
+            <a class="dropdown-item  font-pos-12" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item  font-pos-12" href="#">Something else here</a>
+          </div>
+        </li> --}}
+
     </ul>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link  font-pos-12" href="/users/signup">Sign Up</a>
+    
+    <ul class="nav navbar-nav navbar-right">
+      {{#if check_add_inventory}}
+        <li class="nav-item">
+          <a class="nav-link  font-pos-12" href="#" class="swapinventoryform" data-toggle="modal" data-target="#exampleModalCenter">Add Inventory</a>
+        </li>
+      {{/if}}
+      {{#if logged_in}}
+        <li class=" nav-item dropdown">
+          <a href="#" class="mt-2 snav-link d-flex justify-content-end" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="/images/avatar-default.png"  class="d-none d-lg-block img-circle special-img w-25 h-100"></a>
+            <p>{{user}}</p>
+          </a>
+
+          <div  class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
+            <a class="pos-dark-dropdown-item  dropdown-item text-white" href="#">Profile</a>
+            <div class="dropdown-divider"></div>
+            <a class="pos-dark-dropdown-item  dropdown-item text-white" href="/users/logout">Logout</a>
+          </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link  font-pos-12" href="/users/signin">Login</a>
-      </li>
+      {{/if}}
+      {{#if not_logged_in}}
+        <li class="nav-item">
+          <a class="nav-link  font-pos-12" href="/users/signup">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link  font-pos-12" href="/users/signin">Login</a>
+        </li>
+      {{/if}}
+      
     </ul>
+  </div>
   </div>
 </nav>

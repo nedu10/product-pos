@@ -23,3 +23,58 @@ a {
 .font-pos-20 {
   font-size: 200%
 }
+
+.pos-dark-navbar-toggler {
+  margin-left: -16px !important;
+  margin-right: -16px !important;
+  background: rgb(52, 58, 64, 0.7) !important;
+}
+.pos-dark-dropdown-item:hover, .pos-dark-dropdown-item:focus {
+  color: white !important;
+  text-decoration: none !important;
+  background-color: #16181b !important;
+}
+
+.no-radius{
+  border-radius: 0 !important;
+}
+
+/* navbar */
+.navbar {
+  background-color: transparent;
+  border: none;
+  color: white;
+  z-index: 100;
+  transition: background-color 1s ease 0s;
+}
+
+.navbar.solid {
+  background-color: rgb(15, 15, 15);
+  transition: background-color 1s ease 0s;
+  box-shadow: 0 0 4px grey;
+}
+
+/* images */
+#product-header{
+  background-image: url('/images/product-image3.png');
+  background-size: cover;
+  min-height: 400px;
+}
+
+
+/* styling the card */
+#product-item:hover {
+  box-shadow: 3px 3px 5px 6px #ccc;
+}
+
+#cart-checkout:hover, #empty-cart {
+  box-shadow: 1px 1px 60px 0.1px #ccc;
+}
+
+#cart-item:hover {
+  box-shadow: 1px 1px 60px 0.1px #ccc;
+}
+
+.sidebar-body-container{
+  padding-left: 250px; 
+}

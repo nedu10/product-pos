@@ -2,16 +2,54 @@
 <html>
   <head>
     <title>{{title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{!-- <link rel="stylesheet" href="/stylesheets/font-awesome-icon-solid.css " >
+    <link rel="stylesheet" href="/stylesheets/font-awesome-icon-solid2.css " >
+    <link rel="stylesheet" href="/stylesheets/font-awesome-icon-solid3.css " >
+    <link rel="stylesheet" href="/stylesheets/font-awesome-icon-regular.css " >
+    <link rel="stylesheet" href="/stylesheets/font-awesome-icon-brand.css " >
+    <link rel="stylesheet" href="/stylesheets/font-awesome-icon.css " > --}}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+
+
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Mali" rel="stylesheet">
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="/stylesheets/css/bootstrap.css">
     <link rel="stylesheet" href="/stylesheets/css/bootstrap-reboot.css">
     <link rel="stylesheet" href="/stylesheets/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="/stylesheets/dataTables.bootstrap4.min.css">
+    
+    <link rel="stylesheet" href="/stylesheets/sidebar.css">
   </head>
-  <body class="p-0" style="background: #E8EAED">
-    {{{body}}}
-    <script src="/javascripts/js/jquery.min.js"></script>
-    <script src="/javascripts/js/bootstrap.js"></script>
+  <body class="p-0" style="background: #FCF8F9">
+      <script src="/javascripts/js/jquery.min.js"></script>
+      <script src="/javascripts/jquery.dataTables.min.js"></script>
+      <script src="/javascripts/js/bootstrap.js"></script>
     <script src="/javascripts/js/bootstrap.bundle.js"></script>
+    <script src="/javascripts/dataTables.bootstrap4.min.js"></script>
+      
+    {{{body}}}
+        {{!-- vuejs implementation --}}
+    <script src="/javascripts/vue1.js"></script>
+    <script src="/javascripts/axios.min.js"></script>
+    <script src="/javascripts/product-view-vue.js"></script>
+
+    
+        <script>
+    $(".sidebar-toggler").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    
+    $("#category-sidebar").click(function(e) {
+        e.preventDefault();
+        $("#category-sidebar1").toggleClass("d-none");
+        $("#category-sidebar2").toggleClass("d-none");
+        $("#category-sidebar3").toggleClass("d-none");
+    });
+    </script>
+    
   </body>
 </html>

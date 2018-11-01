@@ -1,0 +1,114 @@
+{{> navbar}}
+{{> sidebar}}
+
+<div id="shopping-cart-body" class="container-fluid mt-5 pt-3" style="padding-left: 250px; font-family:Mali;">
+    <div class="row pt-5 pl-3 pr-3 pb-2">
+        {{#if cart}}
+        <h3 class="text-capitalize">Shopping Cart</h3>
+        {{/if}}
+    </div>
+    {{#if cart}}
+    <div class="row p-3 bg-white" style="border-bottom: 1px solid gray; border-top: 1px solid gray;">
+        <div class="col-9 font-pos-14">Total ({{session.cart.totalQty}} items)</div>
+        <div class="col-3 font-pos-16 text-success text-right">
+            # {{session.cart.totalPrice}}
+        </div>
+    </div>
+    {{/if}}
+
+    <div class="row mt-5 ml-2 mr-2">
+        
+        {{#if cart}}
+        <div class="col-lg-9 ">
+            {{#each session.cartArray}}
+            <div id="cart-item" class="card no-radius mb-3">
+            <div class=" p-1 card-header d-flex" style="font-weight: bold;">
+                <div class="col-6">
+                    <span class="font-pos-12">Item Details</span>
+                </div>
+                <div class="col-2">
+                    <p class="font-pos-12 mb-0 text-center">Quantity</p>
+                </div>
+                <div class="col-2">
+                    <p class="font-pos-12 mb-0 text-center">Price</p>
+                </div>
+                <div class="col-2">
+                    <p class="font-pos-12 mb-0 text-center">Action</p>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-3">
+                                <img width="80px" height="80px" style="object-fit: cover;"src="/{{this.item.product_image.image_path}}" alt="cart image">
+                            </div>
+                            <div class="col-9 ">
+                                <h5 class="card-title text-capitalize">{{this.item.product_title}}</h5>
+                                <p class="card-text text-capitalize">{{this.item.product_short_description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2 d-flex justify-content-center">
+                        <div>
+                            <button class="btn btn-default btn-sm mb-0 no-radius" style="margin-top: -5px!important; font-weight: bold;">+</button>
+                        </div>
+                        
+                        <p class="text-center mb-0"><span class="pl-3 pr-3 pb-1 pt-1" style="border:1px solid #c9c7c7;"> {{this.itemQty}} </span></p>
+                        <div>
+                            <button class="btn btn-default btn-sm mb-0 no-radius" style="margin-top: -5px!important; font-weight: bold;">-</button>
+                        </div>
+                    
+                    </div>
+                    <div class="col-2">
+                        <p class=" text-center mb-0"># {{this.itemPrice}}</p>
+                    </div>
+                    <div class="col-2 text-center">
+                        <a href="/cart/{{this.item._id}}/delete" class="btn btn-sm no-radius btn-danger">Remove</a>
+                    </div>
+                </div>
+                
+            </div>
+            </div>
+            {{/each}}
+        </div>
+        <div class="col-lg-3">
+            <div class="card no-radius" id="cart-checkout">
+                <div class="card-body py-4 p-2">
+                    <div class=" d-flex justify-content-between">
+                        <p class="m-0" style="font-weight: bold;">Order Summary: </p>
+                        <p class="m-0">{{session.cart.totalQty}} Items</p>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <p class="col-4 m-0" ><small style="font-weight: bold;">Delivery Address: </small></p>
+                        <p class="col-8 m-0"><small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, sint.</small></p>
+                    </div>
+                    <hr>
+                    <div class=" d-flex justify-content-between">
+                        <p class="m-0" style="font-weight: bold;">Total: </p>
+                        <p class="m-0"># {{session.cart.totalPrice}}</p>
+                    </div>
+                    <hr>
+                    <a href="/order/checkout" class="btn no-radius btn-success btn-block btn-sm text-center text-white">
+                        Checkout
+                    </a>
+
+                </div>
+                
+
+            </div>
+        </div>
+        {{else}}
+        <div class="col-lg-4 col-md-5 col-sm-6 col-10 mx-auto">
+            <div id="empty-cart" class="card no-radius">
+                <div class="card-body text-center">
+                    <img src="/images/empty-cart.svg" width="200" height="200" alt="">
+                    <p class="text-center text-capitalize font-pos-14 text-danger">no items in cart</p>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+        
+    </div>
+</div>

@@ -1,0 +1,127 @@
+{{> navbar}}
+<div id="wrapper">
+
+
+{{>sidebar}}
+
+<div id="page-content-wrapper" class="container-fluid mt-5 pt-5 pr-0">
+
+
+
+{{!-- <header class="header" id="product-header">
+<div class="header-info">
+
+</div>
+
+<div class="header-action">
+
+</div>
+</header> --}}
+
+<div class="container-fluid p-3 pt-2" id="product-view-vue">
+    {{!-- {{#if success_msg}}
+    <div class="col-4 ml-auto no-radius alert-dismissible fade show alert alert-success" role="alert">
+        {{success_msg}}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {{/if}} --}}
+    <div class="bg-white font-pos-14 text-capitalize mb-3 p-2 pl-4" style="font-weight: bold; border: 1px solid #e2dddd; color: #55585a;">
+        Products
+    </div>
+    <div class="row">
+        {{#each product_list}}
+            <div class="col-sm-6 col-md-6 col-lg-4 pb-3" style="font-family:Mali;">
+                <div id="product-item" class="card no-radius">
+                    <img class="card-img-top" style="object-fit: cover; border-bottom: 1px solid #acadb1;"src="/{{this.product_image.image_path}}" alt="Card image cap" height="350em">
+                    <div class="p-1 card-body notinventoryform" style="background: #eeedf1;" >
+                        {{!-- <h5 class="m-1 card-title text-capitalize">{{this.product_title}} - <small> <i>{{this.category_id.category_title}}</i></small></h5> --}}
+                        <div class="d-flex justify-content-between">
+                            <h5 class="m-1 card-title text-capitalize">{{this.product_title}}</h5>
+                            <p class="m-1 text-capitalize"><span class="badge badge-success text-white">{{this.product_in_stock_count}}</span> item{{#if this.product_in_stock_count}}s{{/if}}</p>
+                        </div>
+                        <p class="m-1 text-capitalize card-text">{{this.product_short_description}}</p>
+                    </div>
+                    {{!-- <div class="card-body d-none inventoryform">
+                        <form action="/product/inventory/create" method="POST">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="inventory-date">Data</label>
+                                        <input class="form-control" type="date" name="inventory_date" id="inventory-date">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="inventory-number">Number of Product</label>
+                                        <input class="form-control" type="number" name="inventory_number" id="inventory-number">
+                                    </div>
+                                </div>
+                        </form>
+                    </div> --}}
+                    <div class="card-footer d-flex justify-content-between text-right" style="background: #eeedf1;">
+                        <span class="font-pos-14"># {{this.product_price_id.product_price}}</span>
+                        <div>
+                            <a href="/order/{{this._id}}/buy" class="btn btn-primary no-radius">Buy</a>
+                            <a href="/cart/{{this._id}}" class="btn btn-warning no-radius text-white">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+
+    {{!-- modals --}}
+<div class="modal no-radius fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-dark">
+        <h5 class="modal-title text-white" id="exampleModalLongTitle">Add Inventory</h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <form  action="/product/inventory/create" method="POST">
+            <div class="modal-body pt-2">
+                <div class="alert alert-danger" v-if="inventoryError">
+                    ({(inventoryError)})
+                </div>
+                <div class="form-group" > 
+                    <label for="product">Product</label>
+                    <select id="form-product" id="product" name="product" class="form-control" required>
+                        {{#each product_list}}
+                            <option value="{{this._id}}">{{this.product_title}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="row d-flex justify-content-between">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="inventory-date">Data</label>
+                            <input v-model="inventory.date" class="form-control" type="date" name="inventory_date" id="inventory-date">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="inventory-number">Number of Product</label>
+                            <input class="form-control" v-model="inventory.number_of_product" type="number" name="inventory_number" id="inventory-number">
+                        </div>
+                    </div>
+                </div>
+                {{csrfToken}}
+                <input id="form-hidden" type="hidden" name="_csrf" value="{{csrfToken}}">
+                
+           
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" @click.prevent="log">Add Inventory</button>
+            </div>
+            </form>
+      </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+

@@ -1,0 +1,42 @@
+{{> navbar}}
+<div class="container pt-5">
+    <div class="row mt-5">
+        <div class="col-md-6 mx-auto">
+            <div class="card no-radius ">
+                <div class="card-header font-weight-bold font-pos-16 text-capitalize bg-primary text-white" style="font-family:Pacifico;">
+                    create a new Category
+                </div>
+                <form action="/product/create?_csrf={{csrfToken}}" method="POST" enctype="multipart/form-data" >
+                    <div class="card-body">
+                        {{#if category_error}}
+                        <div class="alert alert-danger no-radius">
+                            {{#each category_error}}
+                                <div>{{this}}</div>
+                            {{/each}}
+                        </div>
+                        {{/if}}
+                        <div class="form-group ">
+                            <label for="category-name">Category Name</label>
+                            <input type="text" class="form-control" id="category-name" name="category_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="customFile"> Category Image </label>
+                            <div class="custom-file">
+                                <input type="file" name="category_image" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="category-description">Category Description</label>
+                            <input class="form-control" id="category-description" name="category_description">
+                        </div>
+    
+                
+                    <div class="card-footer d-flex justify-content-end">
+                        <button class="btn btn-primary no-radis" type="submit">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

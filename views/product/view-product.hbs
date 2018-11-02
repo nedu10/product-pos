@@ -30,9 +30,14 @@
     <div class="bg-white d-flex justify-content-between font-pos-14 text-capitalize mb-3 p-2 pl-4" style="font-weight: bold; border: 1px solid #e2dddd; color: #55585a;">
         <span>Products</span>
         <div>
-            <span class="btn btn-sm btn-success no-radius">Add Product</span> 
+            {{#if logged_in}}
+            <a href="/product/create">
+                <span class="btn btn-sm btn-success no-radius">Add Product</span> 
+            </a>
+            
             {{#if check_add_inventory}}
             <span class="btn btn-sm btn-primary no-radiusfont-pos-12 swapinventoryform" data-toggle="modal" data-target="#exampleModalCenter">Add inventory</span>
+            {{/if}}
             {{/if}}
         </div>
         

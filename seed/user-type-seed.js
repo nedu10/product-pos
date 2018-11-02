@@ -10,7 +10,7 @@ const  UserType = require('../models/user-type')
 
 
 const user_type = new UserType({
-    name: 'user'
+    name: 'admin_user'
 })
 
 

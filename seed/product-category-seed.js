@@ -10,10 +10,10 @@ const  ProductCategory = require('../models/product/product-categories')
 
 
 const product_category = new ProductCategory({
-    category_title: 'Trouser',
-    category_description: 'Troser at affordable prices',
+    category_title: 'Bag',
+    category_description: 'Bag at affordable prices',
     category_image: {
-        img_name: "trouser",
+        img_name: "bag",
         img_src: "images/shirt.jpg"
     }
 })

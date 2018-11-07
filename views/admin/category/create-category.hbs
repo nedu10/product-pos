@@ -6,7 +6,7 @@
                 <div class="card-header font-weight-bold font-pos-16 text-capitalize bg-primary text-white" style="font-family:Pacifico;">
                     create a new Category
                 </div>
-                <form action="/product/create?_csrf={{csrfToken}}" method="POST" enctype="multipart/form-data" >
+                <form action="/category/create?_csrf={{csrfToken}}" method="POST" enctype="multipart/form-data" >
                     <div class="card-body">
                         {{#if category_error}}
                         <div class="alert alert-danger no-radius">
@@ -26,7 +26,7 @@
                                 <label class="custom-file-label" for="customFile">Choose file</label>
                             </div>
                         </div>
-                        <div class="form-group col-sm-6">
+                        <div class="form-group">
                             <label for="category-description">Category Description</label>
                             <input class="form-control" id="category-description" name="category_description">
                         </div>

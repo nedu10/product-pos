@@ -1,27 +1,30 @@
 <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li class="sidebar-brand d-flex justify-content-between">
+                {{!-- <li class="sidebar-brand d-flex justify-content-between">
                     <a href="#" class="h-100 d-flex">
                         <span class="align-self-center font-pos-12 text-capitalize"><i class="fas fa-user"></i> &nbsp; {{session.current_user.first_name}}</span>
                     </a>
                     <a href="#" class="pr-3 font-pos-16 sidebar-toggler">
                         &times;
                     </a>
-                </li>
+                </li> --}}
+                {{#if session.current_user}}
+                {{#if session.current_user.admin}}
                 <li>
-                    <a href="/dashboard" class="d-flex active">
+                    <a href="/dashboard" class="d-flex {{#if sidebar_active.dashboard}}active{{/if}}">
                         <span class="align-self-center font-pos-12"><i class="fas fa-tachometer-alt"></i> &nbsp; Dashboard</span>
                     </a>
                 </li>
-
                 <li>
-                    <a href="#" class="d-flex">
+                    <a href="/category" class="d-flex {{#if sidebar_active.categories}}active{{/if}}" >
                         <span class="align-self-center font-pos-12"> <i class="fas fa-chart-pie"></i> &nbsp; Categories</span>
                     </a>
                 </li>
+                {{/if}}
+                {{/if}}
                
                 <li>
-                    <a href="#" id="category-sidebar" class="d-flex">
+                    <a href="#" id="category-sidebar" class="d-flex {{#if sidebar_active.category}}active{{/if}}" >
                         <span class="align-self-center font-pos-12"> <i class="fas fa-chart-pie"></i> &nbsp; Category</span>
                     </a>
                 </li>
@@ -30,48 +33,48 @@
                         <span class="align-self-center"> <i class="fab fa-autoprefixer"></i> &nbsp; All Products</span>
                     </a>
                 </li>
-                <li id="category-sidebar2" class="d-none" style="max-height: 40px;">
+                {{#each sidebar_category}}
+                <li id="category-sidebar2" class=" category-sidebar2 d-none" style="max-height: 40px;">
                     <a href="#" style="max-height: 40px; background: #232627;"  class="d-flex"> &nbsp;
-                        <span class="align-self-center"> <i class="fas fa-tshirt"></i>&nbsp; Shirts</span>
+                        <span class="align-self-center"> <i class="fas fa-tshirt"></i>&nbsp; {{this.category_title}}</span>
                     </a>
                 </li>
-                <li id="category-sidebar3" class="d-none" style="max-height: 40px;">
-                    <a href="#" style="max-height: 40px; background: #232627;" class="d-flex"> &nbsp;
-                        <span class="align-self-center"> <i class="fas fa-shoe-prints"></i> &nbsp; Shoes</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="d-flex">
+                {{/each}}
+                {{!-- <li>
+                    <a href="#" class="d-flex" {{#if sidebar_active.profile}}active{{/if}}>
                         <span class="align-self-center"><i class="far fa-user-circle"></i> &nbsp; Profile</span>
                     </a>
-                </li>
+                </li> --}}
                 <li>
-                    <a href="/cart" class="d-flex">
+                    <a href="/cart" class="d-flex {{#if sidebar_active.cart}}active{{/if}}"  >
                         <span class="align-self-center font-pos-12"><i class="fas fa-shopping-cart"></i> &nbsp; Cart &nbsp;</span>
                         <span class="badge badge-success text-white mt-3 mr-3 mb-3 ml-auto" style="font-size: 100%;">{{session.cart.totalQty}}</span>
                     </a>
                 </li>
+                {{#if session.current_user}}
                 <li>
-                    <a href="/order/view" class="d-flex">
+                    <a href="/order/view" class="d-flex {{#if sidebar_active.orders}}active{{/if}}" >
                         <span class="align-self-center font-pos-12"><i class="far fa-credit-card"></i> &nbsp; Orders</span>
                     </a>
                 </li>
+                {{/if}}
                 {{#if not_logged_in}}
                 <li>
-                    <a href="/users/signin" class="d-flex">
+                    <a href="/users/signin" class="d-flex  {{#if sidebar_active.login}}active{{/if}}">
                         <span class="align-self-center font-pos-12"><i class="fas fa-sign-in-alt"></i> &nbsp; Login</span>
                     </a>
                 </li>
+                
                 <li>
-                    <a href="/users/signup" class="d-flex">
+                    <a href="/users/signup" class="d-flex {{#if sidebar_active.signup}}active{{/if}}"  >
                         <span class="align-self-center font-pos-12"><i class="fas fa-user-plus"></i>&nbsp; Signup</span>
                     </a>
                 </li>
                 {{/if}}
                 {{#if logged_in}}
                 <li>
-                    <a href="/users/logout" class="d-flex">
-                        <span class="align-self-center font-pos-12"><i class="fas fa-sign-out-alt"></i> &nbsp; Logout</span>
+                    <a href="/users/logout" class="d-flex {{#if sidebar_active.logout}}active{{/if}}" >
+                        <span class="align-self-center font-pos-12" ><i class="fas fa-sign-out-alt"></i> &nbsp; Logout</span>
                     </a>
                 </li>
                 {{/if}}

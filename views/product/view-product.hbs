@@ -19,14 +19,6 @@
 </header> --}}
 
 <div class="container-fluid p-3 pt-2" id="product-view-vue">
-    {{!-- {{#if success_msg}}
-    <div class="col-4 ml-auto no-radius alert-dismissible fade show alert alert-success" role="alert">
-        {{success_msg}}
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    {{/if}} --}}
     <div class="bg-white d-flex justify-content-between font-pos-14 text-capitalize mb-3 p-2 pl-4" style="font-weight: bold; border: 1px solid #e2dddd; color: #55585a;">
         <span>Products</span>
         <div>
@@ -44,9 +36,10 @@
     </div>
     <div class="row">
         {{#each product_list}}
-            <div class="col-sm-6 col-md-6 col-lg-4 pb-3" style="font-family:Mali;">
+            <div class="col-sm-6 col-md-4 col-lg-3 pb-3" style="font-family:Mali;">
                 <div id="product-item" class="card no-radius">
-                    <img class="card-img-top" style="object-fit: cover; border-bottom: 1px solid #acadb1;"src="/{{this.product_image.image_path}}" alt="Card image cap" height="350em">
+                    <img class="card-img-top" style="object-fit: cover; border-bottom: 1px solid #acadb1;"
+                    src="/{{this.product_image.image_path}}" alt="Card image cap" height="300em">
                     <div class="p-1 card-body notinventoryform" style="background: #eeedf1;" >
                         {{!-- <h5 class="m-1 card-title text-capitalize">{{this.product_title}} - <small> <i>{{this.category_id.category_title}}</i></small></h5> --}}
                         <div class="d-flex justify-content-between">
@@ -71,12 +64,43 @@
                                 </div>
                         </form>
                     </div> --}}
+                    
                     <div class="card-footer d-flex justify-content-between text-right" style="background: #eeedf1;">
                         <span class="font-pos-14"># {{this.product_price_id.product_price}}</span>
+                        {{!-- {{#if session.current_user}} --}}
+                        {{!-- {{#if session.current_user.admin}} --}}
+                        <div>
+                            {{!-- <a href="#" class="btn btn-dark no-radius">Update</a>
+                            <a href="#" class="btn btn-danger no-radius text-white">Delete</a> --}}
+                            <a href="/order/{{this._id}}/buy" class="btn btn-primary no-radius">Buy</a>
+                            <a href="/cart/{{this._id}}" class="btn btn-warning no-radius text-white">Add to Cart</a>
+                        </div>
+                        {{!-- {{/if}} --}}
+                        {{!-- {{/if}} --}}
+                        {{!-- {{else}}
+                        <div>
+                            <a href="/order/{{this._id}}/buy" class="btn btn-primary no-radius">Buy</a>
+                            <a href="/cart/{{this._id}}" class="btn btn-warning no-radius text-white">Add to Cart</a>
+                        </div> --}}
+                        
+                        {{!-- {{else}}
+                        <div>
+                            <a href="/order/{{this._id}}/buy" class="btn btn-primary no-radius">Buy</a>
+                            <a href="/cart/{{this._id}}" class="btn btn-warning no-radius text-white">Add to Cart</a>
+                        </div> --}}
+                        
+                        {{!-- {{#if session.current_user}}
+                        {{#if session.current_user.user}}
                         <div>
                             <a href="/order/{{this._id}}/buy" class="btn btn-primary no-radius">Buy</a>
                             <a href="/cart/{{this._id}}" class="btn btn-warning no-radius text-white">Add to Cart</a>
                         </div>
+                        {{/if}}
+                        {{/if}}
+                        {{#if not_logged_in}}
+                        
+                        {{/if}}
+                         --}}
                     </div>
                 </div>
             </div>

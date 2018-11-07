@@ -1,0 +1,87 @@
+﻿@font-face {
+    font-family: Consolas;
+    src: url('fonts/Consolas.ttf');
+}
+
+.csharpcode {
+    background: none repeat scroll 0 0 #FFF;
+    color: #000000;
+    font-family: Consolas,"Courier New",Courier,Monospace;
+    font-size: 15px;
+    overflow: auto;
+    padding: 10px 0 10px 5px;
+    margin: 0;
+    border: 0;
+    word-wrap:initial;
+}
+
+
+    .csharpcode code {
+        font-family: "Consolas","Courier New",Courier,Monospace;
+        padding: 0;
+        white-space: inherit;
+        line-height: 1rem;
+    }
+    
+        pre .white {
+    background: none repeat scroll 0 0 #FFF;
+    margin: 0 0 10px 0;
+    height: auto;
+    /*height:405px;*/
+    width: 99%;
+}
+
+.csharpcode pre {
+    margin: 0;
+}
+
+.csharpcode .rem {
+    color: #008000;
+}
+
+.csharpcode .userclass {
+    color: #2B91AF;
+}
+
+.csharpcode .kwrd {
+    color: #0000FF;
+}
+
+.csharpcode .str {
+    color: #A31515;
+}
+
+.csharpcode .op {
+    color: #0000C0;
+}
+
+.csharpcode .preproc {
+    color: #CC6633;
+}
+
+.csharpcode .asp {
+    background-color: #FFFF00;
+}
+
+.csharpcode .html {
+    color: #800000;
+}
+
+.csharpcode .attr {
+    color: #FF0000;
+}
+
+.csharpcode .alt {
+    background-color: #F4F4F4;
+    margin: 0;
+    width: inherit;
+}
+
+.csharpcode .lnum {
+    color: #606060;
+}
+
+.csharpcode .at {
+    background-color: yellow;
+}
+

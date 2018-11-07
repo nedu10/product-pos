@@ -18,6 +18,9 @@ var cart = require('./routes/cart');
 var order = require('./routes/order');
 var category = require('./routes/categories');
 
+var CategoryModel = require('./models/product/product-categories')
+var UserTypeModel = require('./models/user-type')
+
 var app = express();
 
 //setting up DB
@@ -71,10 +74,57 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use((req, res, next) => {
+  // req.session.current_user = req.user
   res.locals.logged_in = req.isAuthenticated()
   res.locals.not_logged_in = !req.isAuthenticated()
   res.locals.session = req.session
-  next()
+console.log( 'hugyftredfgiukjhgfsxcvbyjrtezdxctygt67k');
+
+  if (!req.user) {
+    res.locals.session.current_user = null
+    CategoryModel.find()
+      .select('category_title')
+      .exec()
+      .then(response => {
+        console.log(response)
+        res.locals.sidebar_category = response
+        next()
+      })
+      .catch(err => {
+        console.log(err)
+        throw err
+      })
+  } else {
+    UserTypeModel.findOne({_id: req.user[0].user_type_id})
+    .select('name')
+    .exec()
+    .then(response1 => {
+      console.log('response1 >> ', response1);
+      var newUser = {data: req.user[0], admin: (response1.name.toLowerCase() == "user") ? 0 : 1  ,user: (response1.name.toLowerCase() == "user") ? 1 : 0  }
+      res.locals.session.current_user = newUser 
+      console.log('MMMeee >> ', newUser)
+      CategoryModel.find()
+      .select('category_title')
+      .exec()
+      .then(response => {
+        console.log(response)
+        res.locals.sidebar_category = response
+        next()
+      })
+      .catch(err => {
+        console.log(err)
+        throw err
+      })
+      
+    })
+    .catch(err => {
+      console.log(err)
+      return err
+    })
+  }
+
+
+
 })
 
 app.use('/', indexRouter);

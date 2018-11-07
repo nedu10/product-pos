@@ -59,7 +59,7 @@
           </a>
 
           <div  class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
-            <a class="pos-dark-dropdown-item  dropdown-item text-white" href="#">Profile</a>
+            <a class="pos-dark-dropdown-item  dropdown-item text-white" href="#">{{session.current_user.data.first_name}}</a>
             <div class="dropdown-divider"></div>
             <a class="pos-dark-dropdown-item  dropdown-item text-white" href="/users/logout">Logout</a>
           </div>

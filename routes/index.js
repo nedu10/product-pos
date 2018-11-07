@@ -8,14 +8,14 @@ const Middleware = require('../middlewares/middlewares')
 var router = express.Router();
 
 /* GET home page. */
-router.get('/dashboard', Middleware.isLoggedIn, function(req, res, next) {
-  res.render('dashboard', { title: 'project-pos' });
-});
-
 router.get('/', function(req, res, next) {
-  console.log('app.js >> ', req.session.cart)
-
-  res.render('index', { title: 'project-pos' });
+  res.render('index', { title: 'project-pos', sidebar_active: {index: true} });
 });
+
+router.get('/dashboard', Middleware.isLoggedIn, function(req, res, next) {
+  res.render('dashboard', { title: 'project-pos', sidebar_active: {dashboard: true} });
+});
+
+
 
 module.exports = router;

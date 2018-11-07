@@ -18,7 +18,8 @@ router.get('/checkout', Middleware.isLoggedIn, (req, res, next) => {
     }
     console.log(req.user)
     res.render('product/checkout', {
-        title:  'product-pos'
+        title:  'product-pos',
+        sidebar_active: {}
     })
 })
 
@@ -58,7 +59,8 @@ router.get('/view', Middleware.isLoggedIn, (req, res, next) => {
         })
         return res.render('order/order-view',{
             title: 'product-pos',
-            order_items: newReverseOrderItems
+            order_items: newReverseOrderItems,
+            sidebar_active: {orders: true}
         })
     })
     .catch(err => {

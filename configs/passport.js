@@ -28,7 +28,6 @@ passport.use('local-signup', new localStrategy({
     }
     UserType.findOne({name: req.body.user_type})
     .then( response2 => {
-        console.log(response2.id)
         User.findOne({email: email}, function(err, user){
             if(err){
                 return done(err)
@@ -76,9 +75,8 @@ passport.use('local-signin', new localStrategy({
             return done(null, false, {message: 'Account does not exist'})
             
         }
-        console.log('am here')
         if(!user.validatePassword(password1)){
-            return done(null, false, {message: 'Password and email do not correspond'})
+            return done(null, false, {message: 'Password and Email does not correspond'})
         }
         done(null, user)
     })

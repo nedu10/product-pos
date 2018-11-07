@@ -11,12 +11,14 @@ router.get('/', (req, res, next) => {
     if (!req.session.cart) {
         return res.render('product/cart', {
             title: 'product-pos',
-            cart: false
+            cart: false,
+            sidebar_active: {cart: true}
         })
     } else {
         return res.render('product/cart', {
             title: 'product-pos',
-            cart: true
+            cart: true,
+            sidebar_active: {cart: true}
         })
     }
     

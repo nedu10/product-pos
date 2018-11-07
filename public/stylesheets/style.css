@@ -67,7 +67,7 @@ a {
   box-shadow: 3px 3px 5px 6px #ccc;
 }
 
-#cart-checkout:hover, #empty-cart {
+#cart-checkout:hover, #empty-cart, .shadow-effect:hover {
   box-shadow: 1px 1px 60px 0.1px #ccc;
 }
 

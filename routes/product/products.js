@@ -73,7 +73,8 @@ router.get('/create', (req, res, next) => {
             title: 'product-pos',
             product_category: response,
             product_error: (check) ? product_err : false,
-            csrfToken: req.csrfToken()
+            csrfToken: req.csrfToken(),
+            sidebar_active: {category: true}
         })
     })
     .catch(err => {
@@ -154,7 +155,8 @@ router.get('/view', (req, res, next) => {
         product_list: response, 
         csrfToken: req.csrfToken(), 
         check_add_inventory: true,
-        success_msg: successMsg
+        success_msg: successMsg,
+        sidebar_active: {category: true}
     })
         
     })
@@ -184,7 +186,8 @@ router.post('/inventory/create',Validation.inventoryValidation, (req, res, next)
                 console.log(response3);
                 res.status(202).json({
                     status: 'success',
-                    message: 'successfully created inventory'
+                    message: 'successfully created inventory',
+                    sidebar_active: {category: true}
                 })
            })
            .catch(error3 => {

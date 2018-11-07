@@ -1,0 +1,105 @@
+{{> navbar}}
+
+<div id="wrapper">
+{{> sidebar}}
+
+
+<div id="shopping-cart-body" class="container-fluid mt-5 pt-3" style="padding-left: 250px; font-family:Mali;">
+ <div id="category-vue">   
+    <div class="row mt-5 ml-2 mr-2">
+        <div class="bg-white col-12 d-flex justify-content-between font-pos-14 text-capitalize mb-3 p-2 pl-4" style="font-weight: bold; border: 1px solid #e2dddd; color: #55585a;">
+          <span>Category</span>
+          <div>
+            <a href="/category/create"><button class="btn btn-dark btn-sm no-radius">Add Category</button></a>
+          </div>
+        </div>
+
+        <div class="row w-100">
+            {{#each category_list}}
+            <div class=" col-md-4 col-sm-6 col-lg-3">
+                <div class="card shadow-effect no-radius mt-3"  >
+                <img class="card-img-top" {{#if this.category_image }}src="/{{this.category_image.image_path}}" {{else}} 
+                src="/images/shirt.jpg"{{/if}}  
+                style="min-height: 280px !important;max-height: 280px !important; width: 100%; object-fit: cover; border-bottom: 1px solid #acadb1;" alt="Card image cap">
+                <div class="card-body p-1" style="background: #eeedf1;">
+                    <h5 class="card-title mb-1 text-capitalize">{{this.category_title}}</h5>
+                    <input type="hidden" class="category_title" value="{{this.category_title}}"> 
+                     <input type="hidden" class="category_id" value="{{this._id}}"> 
+                    <p class="card-text mb-1 text-capitalize"><small>{{this.category_description}}</small></p>
+                    <input type="hidden" class="category_description" value="{{this.category_description}}"> 
+                </div>
+                <div class="card-footer d-flex justify-content-center p-2">
+                    {{!-- <form action="/category/update" method="PUT">
+                        <input type="hidden" name="category_id" value="{{this._id}}"> --}}
+                        <button class="category-button btn btn-dark no-radius btn-sm" 
+                        data-toggle="modal" 
+                        data-target="#categoryModalCenter">
+                        Edit
+                        </button>
+                  &nbsp;
+                  <form action="/category/delete/{{this._id}}/{{this.category_title}}?_csrf={{csrfToken}}" method="get">
+                        <button class="btn no-radius btn-sm" type="submit"
+                         style="border-color: #f53042; background-color: #ff0019; color: #fff;">Delete</button>
+                  </form>
+                </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+    {{!-- modals --}}
+<div class="modal no-radius fade" id="categoryModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-dark">
+        <h5 class="modal-title text-white" id="exampleModalLongTitle">Edit Category</h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <form  action="/cayegory/update" method="POST">
+            <div class="modal-body pt-2">
+                <div class="alert alert-danger alert-dismissible no-radius fade show" v-if="displayCategoryError" style="border-left: 3px solid #ff0707;">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <p v-for="error in categoryError">
+                        ({(error)})
+                    </p>
+                </div>
+                <div class="row d-flex justify-content-between">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="category-title">Category Title</label>
+                            <input v-model="category.title" class="form-control no-radius" type="text"  name="category_title" id="category-title">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="customFile"> Category Image </label>
+                            <div class="custom-file no-radius">
+                                <input  type="file" ref="category_image" ref="category_image" name="category_image" class="custom-file-input no-radius" id="customFile">
+                                <label class="no-radius custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id= "category-csrf" class="csrfToken" value="{{csrfToken}}">
+                <div class="form-group">
+                    <label for="category-description">Categoty Description</label>
+                    <textarea class="form-control no-radius" name="category_description" v-model="category.description" id="category-description"></textarea>
+                </div>
+                
+           
+            </div>
+            <div class="modal-footer d-flex justify-content-center p-2">
+                <button class="btn  text-white btn-dark no-radius" @click.prevent="editCategory">Edit Category</button>
+            </div>
+            </form>
+      </div>
+  </div>
+</div>
+</div>
+</div>
+</div>

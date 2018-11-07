@@ -15,7 +15,7 @@ exports.notLoggedIn =  function(req, res, next){
     if(!req.isAuthenticated()){
         next()
     }
-    else{s
-        res.redirect('/users/signup')
+    else{
+        res.redirect('/dashboard')
     }
 }

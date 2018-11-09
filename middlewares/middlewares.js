@@ -18,12 +18,7 @@ exports.adminIsLoggedIn = function(req, res, next){
             next()
         }
         else {
-            return res.status(401).json(
-                {
-                    status: 'Failed',
-                    Message: 'Unauthorized'
-                }
-            )
+            return res.render('error401', {title: 'project-pos'})
         }
     }
     else{
@@ -41,12 +36,7 @@ exports.userIsLoggedIn = function(req, res, next){
             next()
         }
         else {
-            return res.status(401).json(
-                {
-                    status: 'Failed',
-                    Message: 'Unauthorized'
-                }
-            )
+            return res.render('error401', {title: 'project-pos'})
         }
     }
     else{

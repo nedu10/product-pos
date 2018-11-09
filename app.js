@@ -147,7 +147,10 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  if(err.status == 404){
+    return res.render('error404', {title: 'product-pos'});
+  }
+  res.render('error', {title: 'product-pos'});
 });
 
 module.exports = app;

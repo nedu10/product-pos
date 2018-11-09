@@ -6,7 +6,7 @@
 <div id="shopping-cart-body" class="container-fluid mt-5 pt-3" style="padding-left: 250px; font-family:Mali;">
     <div class="row pt-5 pl-3 pr-3 pb-2">
         {{#if cart}}
-        <h3 class="text-capitalize">Shopping Cart</h3>
+        <h3 class="text-capitalize ml-3">Shopping Cart</h3>
         {{/if}}
     </div>
     {{#if cart}}
@@ -52,14 +52,14 @@
                         </div>
                     </div>
                     <div class="col-2 d-flex justify-content-center">
-                        <div>
+                        {{!-- <div>
                             <button class="btn btn-default btn-sm mb-0 no-radius" style="margin-top: -5px!important; font-weight: bold;">+</button>
                         </div>
-                        
+                         --}}
                         <p class="text-center mb-0"><span class="pl-3 pr-3 pb-1 pt-1" style="border:1px solid #c9c7c7;"> {{this.itemQty}} </span></p>
-                        <div>
+                        {{!-- <div>
                             <button class="btn btn-default btn-sm mb-0 no-radius" style="margin-top: -5px!important; font-weight: bold;">-</button>
-                        </div>
+                        </div> --}}
                     
                     </div>
                     <div class="col-2">

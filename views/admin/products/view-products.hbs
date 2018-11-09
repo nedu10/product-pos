@@ -1,0 +1,174 @@
+{{> navbar}}
+<div id="wrapper">
+
+
+{{>sidebar}}
+
+<div id="page-content-wrapper" class="container-fluid mt-5 pt-5 pr-0">
+    <div  id="product-view-vue">
+        <div class="container-fluid p-3 pt-2" id="admin-product-view-vue">
+            <div class="bg-white d-flex justify-content-between font-pos-14 text-capitalize mb-3 p-2 pl-4" style="font-weight: bold; border: 1px solid #e2dddd; color: #55585a;">
+                <span>Products</span>
+                <div>
+                    {{#if logged_in}}
+                    {{#if check_add_inventory}}
+                    <span class="btn btn-sm btn-primary no-radiusfont-pos-12 swapinventoryform" data-toggle="modal" data-target="#exampleModalCenter">Add inventory</span>
+                    {{/if}}
+                    {{/if}}
+                </div>
+                
+            </div>
+            <div class="row">
+                <p id="edit-product-csrf" class="d-none ">{{csrfToken}}</p>
+                {{#each product_list}}
+                    <div class="col-sm-6 col-md-4 col-lg-3 pb-3" style="font-family:Mali;">
+                        <div id="product-item" class="card no-radius">
+                            <img class="card-img-top" style="object-fit: cover; border-bottom: 1px solid #acadb1;"
+                            src="/{{this.product_image.image_path}}" alt="Card image cap" height="300em">
+                            <div class="p-1 card-body notinventoryform" style="background: #eeedf1;" >
+                                {{!-- <h5 class="m-1 card-title text-capitalize">{{this.product_title}} - <small> <i>{{this.category_id.category_title}}</i></small></h5> --}}
+                                <div class="d-flex justify-content-between">
+                                    <h5 class="m-1 card-title text-capitalize">{{this.product_title}}</h5>
+                                    <p class="m-1 text-capitalize"><span class="badge badge-success font-pos-14 text-white">{{this.product_in_stock_count}}</span> item{{#if this.product_in_stock_count}}s{{/if}}</p>
+                                </div>
+                                <p class="m-1 text-capitalize card-text">{{this.product_short_description}}</p>
+                                <p class="product-description d-none">{{this.product_description}}</p>
+                                <p class="d-none product-short-description">{{this.product_short_description}}</p>
+                                <p class="d-none product-title">{{this.product_title}}</p>
+                                <p class="d-none product-id">{{this._id}}</p>
+                            </div>
+
+                            
+                            <div class="card-footer d-flex justify-content-between text-right" style="background: #eeedf1;">
+                                <span class="font-pos-14"># {{this.product_price_id.product_price}}</span>
+                                <span class="product-price-id d-none">{{this.product_price_id._id}}</span>
+                                <span class="product-price d-none">{{this.product_price_id.product_price}}</span>
+                                <div class="d-flex">
+                                    <button class="product-button btn btn-dark no-radius btn-sm" 
+                                    data-toggle="modal" 
+                                    data-target="#adminProductModalCenter">
+                                    Edit
+                                    </button> &nbsp; 
+                                    <form action="/product/delete/{{this._id}}/{{this.product_title}}?_csrf={{csrfToken}}" method="get">
+                                        <button class="btn no-radius btn-sm" type="submit"
+                                        style="border-color: #f53042; background-color: #ff0019; color: #fff;">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+
+            {{!-- modals --}}
+        <div class="modal no-radius fade" id="adminProductModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h5 class="modal-title text-white" id="exampleModalLongTitle">Edit Product</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <form  action="/product/inventory/create" method="POST">
+                    <div class="modal-body pt-2">
+                        <div class="alert alert-danger no-radius text-capitalize" style="border-left: 3px solid #c22d2d;" v-if="productError.length > 0">
+                            <p v-for = "error in productError">
+                                * ({(error)})
+                            </p>
+                            
+                        </div>
+                    <div class="row justify-content-between">
+                            <div class="form-group col-sm-6">
+                                <label for="product-name">Product Name</label>
+                                <input v-model="product.name" type="text" class="form-control" id="product-name" name="product_name">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="product-price">Price</label>
+                                <input v-model="product.price" type="number" class="form-control" id="product-price" name="product_price">
+                            </div>
+                        </div>
+                        <div class="row justify-content-between">
+                            <div class="form-group col-sm-6">
+                                <label for="customFile"> Product Image </label>
+                                <div class="custom-file">
+                                    <input type="file" name="product_image" ref="product_image" class="custom-file-input" id="customFile">
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="product-short-description">Short Description</label>
+                                <input v-model="product.short_description" class="form-control" id="product-short-description" name="product_short_description">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-description">Description</label>
+                            <textarea v-model="product.description" class="form-control" id="product-description" name="product_description"></textarea>
+                        </div>
+                        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary no-radius" @click.prevent="editProduct">Save Changes</button>
+                    </div>
+                    </form>
+            </div>
+        </div>
+        </div>
+        </div>
+        {{!-- modal for inventory --}}
+        <div class="modal no-radius fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h5 class="modal-title text-white" id="exampleModalLongTitle">Add Inventory</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <form  action="/product/inventory/create" method="POST">
+                    <div class="modal-body pt-2">
+                        <div class="alert alert-danger no-radius text-capitalize" style="border-left: 3px solid #c22d2d;" v-if="inventoryError">
+                            ({(inventoryError)})
+                        </div>
+                        <div class="form-group" > 
+                            <label for="product">Product</label>
+                            <select id="form-product" id="product" name="product" class="form-control" required>
+                                {{#each product_list}}
+                                    <option value="{{this._id}}">{{this.product_title}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="row d-flex justify-content-between">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="inventory-date">Data</label>
+                                    <input v-model="inventory.date" class="form-control" type="date" name="inventory_date" id="inventory-date">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="inventory-number">Number of Product</label>
+                                    <input class="form-control" v-model="inventory.number_of_product" type="number" name="inventory_number" id="inventory-number">
+                                </div>
+                            </div>
+                        </div>
+                        {{csrfToken}}
+                        <input id="form-hidden" type="hidden" name="_csrf" value="{{csrfToken}}">
+                        
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" @click.prevent="log">Add Inventory</button>
+                    </div>
+                    </form>
+            </div>
+        </div>
+        </div>
+        
+    </div>
+</div>
+</div>
+
+<script src="/javascripts/admin-product-vue.js"></script>
+
+

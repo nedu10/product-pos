@@ -1,0 +1,80 @@
+{{>navbar}}
+
+<div id="wrapper">
+{{>sidebar}}
+
+<div id="page-content-wrapper" class="container-fluid mt-5 pt-3" style="padding-left: 250px; font-family:Mali;">
+    <div class="row mt-5 ml-2 mr-2">
+        <div class="bg-white col-12 font-pos-14 text-capitalize mx-2 mb-3 p-2 pl-4" style="font-weight: bold; border: 1px solid #e2dddd; color: #55585a;">
+            Orders
+        </div>
+        <div class="col-12" style="overflow-x: scroll;">
+            <table id="example" class="table col-12 table-striped table-bordered mx-2 mb-3 p-2" style="width:100%; " >
+        <thead>
+            <tr>
+                <th style="width: 20px !important;">S/N</th>
+                <th class="d-none d-sm-table-cell">Name</th>
+                <th>Phone_no</th>
+                <th>Items</th>
+                <th>Order date</th>
+                <th>Order Time</th>
+                <th>Status</th>
+                <th>Total Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each order_items}}
+                <tr>
+                    <td class="text-center">{{this.s_n}}</td>
+                    <td class="d-none d-sm-table-cell">{{this.full_name}}</td>
+                    <td>{{this.phone_no}}</td>
+                    <td class="text-center">{{this.totalQty}}</td>
+                    <td class="text-center">{{this.date}}</td>
+                    <td class="text-center">{{this.time}}</td>
+                    {{#if this.status}}
+                        <td class="text-center">
+                            <div class="badge badge-success">Delivered</div>
+                        </td>
+                    {{else}}
+                    <td class="text-center">
+                        <div class="badge badge-warning">In Progress</div>
+                    </td>
+                    {{/if}}
+                    <td class="text-center">{{this.totalPrice}}</td>
+                    
+                        <td class="text-center">
+                            {{#if this.status}}
+                            <a href="/order/admin-view/{{this.id}}/remove">
+                                <button class="btn btn-sm btn-dark no-radius"
+                                >Revert</button>
+                            </a>
+                            {{else}}
+                            <a href="/order/admin-view/{{this.id}}/accept">
+                                <button class="btn btn-sm btn-success no-radius">Delivered</button>
+                            </a>
+                            {{/if}}
+                            <a href="/order/admin-view/{{this.id}}/delete">
+                                <button class="btn btn-sm btn-danger no-radius"
+                                style="border-color: #f53042; background-color: #ff0019; color: #fff;"
+                                >Delete</button>
+                            </a>
+                            
+                        </td>
+                    
+                    
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+        </div>
+    </div>
+   
+</div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+</script>

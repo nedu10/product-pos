@@ -18,19 +18,19 @@
 </div>
 </header> --}}
 
-<div class="container-fluid p-3 pt-2" id="product-view-vue">
+<div class="container-fluid p-3 pt-2" ">
     <div class="bg-white d-flex justify-content-between font-pos-14 text-capitalize mb-3 p-2 pl-4" style="font-weight: bold; border: 1px solid #e2dddd; color: #55585a;">
         <span>Products</span>
         <div>
-            {{#if logged_in}}
-            <a href="/product/create">
+            {{!-- {{#if logged_in}} --}}
+            {{!-- <a href="/product/create">
                 <span class="btn btn-sm btn-success no-radius">Add Product</span> 
-            </a>
+            </a> --}}
             
-            {{#if check_add_inventory}}
+            {{!-- {{#if check_add_inventory}}
             <span class="btn btn-sm btn-primary no-radiusfont-pos-12 swapinventoryform" data-toggle="modal" data-target="#exampleModalCenter">Add inventory</span>
             {{/if}}
-            {{/if}}
+            {{/if}} --}}
         </div>
         
     </div>
@@ -73,7 +73,7 @@
                             {{!-- <a href="#" class="btn btn-dark no-radius">Update</a>
                             <a href="#" class="btn btn-danger no-radius text-white">Delete</a> --}}
                             <a href="/order/{{this._id}}/buy" class="btn btn-primary no-radius">Buy</a>
-                            <a href="/cart/{{this._id}}" class="btn btn-warning no-radius text-white">Add to Cart</a>
+                            <a href="/cart/{{this._id}}" class="btn btn-warning no-radius text-white"><i class="fas fa-shopping-cart font-pos-12"></i></a>
                         </div>
                         {{!-- {{/if}} --}}
                         {{!-- {{/if}} --}}
@@ -108,7 +108,7 @@
     </div>
 
     {{!-- modals --}}
-<div class="modal no-radius fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+{{!-- <div class="modal no-radius fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header bg-dark">
@@ -155,7 +155,7 @@
             </form>
       </div>
   </div>
-</div>
+</div> --}}
 </div>
 </div>
 </div>

@@ -25,7 +25,7 @@ new Vue({
                 _csrf: formHidden
             })
             .then(function (response) {
-              window.location.href = "/product/view"
+              window.location.href = "/product/admin-view"
             })
             .catch(function (error) {
               console.log('err >> ', error.response)

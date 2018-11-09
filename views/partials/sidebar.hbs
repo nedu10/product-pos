@@ -8,6 +8,7 @@
                         &times;
                     </a>
                 </li> --}}
+                <br>
                 {{#if session.current_user}}
                 {{#if session.current_user.admin}}
                 <li>
@@ -20,10 +21,16 @@
                         <span class="align-self-center font-pos-12"> <i class="fas fa-chart-pie"></i> &nbsp; Categories</span>
                     </a>
                 </li>
+                {{else}}
+                <li>
+                    <a href="/category/view" class="d-flex {{#if sidebar_active.categories_user}}active{{/if}}" >
+                        <span class="align-self-center font-pos-12"> <i class="fas fa-chart-pie"></i> &nbsp; Categories</span>
+                    </a>
+                </li>
                 {{/if}}
                 {{/if}}
                
-                <li>
+                {{!-- <li>
                     <a href="#" id="category-sidebar" class="d-flex {{#if sidebar_active.category}}active{{/if}}" >
                         <span class="align-self-center font-pos-12"> <i class="fas fa-chart-pie"></i> &nbsp; Category</span>
                     </a>
@@ -39,24 +46,67 @@
                         <span class="align-self-center"> <i class="fas fa-tshirt"></i>&nbsp; {{this.category_title}}</span>
                     </a>
                 </li>
-                {{/each}}
-                {{!-- <li>
-                    <a href="#" class="d-flex" {{#if sidebar_active.profile}}active{{/if}}>
-                        <span class="align-self-center"><i class="far fa-user-circle"></i> &nbsp; Profile</span>
+                {{/each}} --}}
+            
+
+                {{#if session.current_user}}
+                {{#if session.current_user.admin}}
+                <li>
+                    <a href="/product/admin-view"  class="d-flex {{#if sidebar_active.category}}active{{/if}}" >
+                        <span class="align-self-center font-pos-12"> <i class="fab fa-autoprefixer"></i> &nbsp; All Products</span>
                     </a>
-                </li> --}}
+                </li>
+                <li>
+                    <a href="/product/create"  class="d-flex {{#if sidebar_active.add_product}}active{{/if}}" >
+                        <span class="align-self-center font-pos-12"> <i class="fab fa-autoprefixer"></i> &nbsp; Add Products</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/order/admin-view" class="d-flex {{#if sidebar_active.orders}}active{{/if}}" >
+                        <span class="align-self-center font-pos-12"><i class="far fa-credit-card"></i> &nbsp; Orders</span>
+                    </a>
+                </li>
+                {{else}}
+                <li>
+                    <a href="/product/view"  class="d-flex {{#if sidebar_active.category}}active{{/if}}" >
+                        <span class="align-self-center font-pos-12"> <i class="fab fa-autoprefixer"></i> &nbsp; All Products</span>
+                    </a>
+                </li>
                 <li>
                     <a href="/cart" class="d-flex {{#if sidebar_active.cart}}active{{/if}}"  >
                         <span class="align-self-center font-pos-12"><i class="fas fa-shopping-cart"></i> &nbsp; Cart &nbsp;</span>
                         <span class="badge badge-success text-white mt-3 mr-3 mb-3 ml-auto" style="font-size: 100%;">{{session.cart.totalQty}}</span>
                     </a>
                 </li>
+                {{/if}}
+                {{else}}
+                <li>
+                    <a href="/product/view"  class="d-flex {{#if sidebar_active.category}}active{{/if}}" >
+                        <span class="align-self-center font-pos-12"> <i class="fab fa-autoprefixer"></i> &nbsp; All Products</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/cart" class="d-flex {{#if sidebar_active.cart}}active{{/if}}"  >
+                        <span class="align-self-center font-pos-12"><i class="fas fa-shopping-cart"></i> &nbsp; Cart &nbsp;</span>
+                        <span class="badge badge-success text-white mt-3 mr-3 mb-3 ml-auto" style="font-size: 100%;">{{session.cart.totalQty}}</span>
+                    </a>
+                </li>
+                {{/if}}
+
+                {{!-- <li>
+                    <a href="#" class="d-flex" {{#if sidebar_active.profile}}active{{/if}}>
+                        <span class="align-self-center"><i class="far fa-user-circle"></i> &nbsp; Profile</span>
+                    </a>
+                </li> --}}
+
                 {{#if session.current_user}}
+                {{#if session.current_user.user}}
                 <li>
                     <a href="/order/view" class="d-flex {{#if sidebar_active.orders}}active{{/if}}" >
                         <span class="align-self-center font-pos-12"><i class="far fa-credit-card"></i> &nbsp; Orders</span>
                     </a>
                 </li>
+                {{/if}}
                 {{/if}}
                 {{#if not_logged_in}}
                 <li>

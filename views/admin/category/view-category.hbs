@@ -18,9 +18,11 @@
             {{#each category_list}}
             <div class=" col-md-4 col-sm-6 col-lg-3">
                 <div class="card shadow-effect no-radius mt-3"  >
-                <img class="card-img-top" {{#if this.category_image }}src="/{{this.category_image.image_path}}" {{else}} 
-                src="/images/shirt.jpg"{{/if}}  
-                style="min-height: 280px !important;max-height: 280px !important; width: 100%; object-fit: cover; border-bottom: 1px solid #acadb1;" alt="Card image cap">
+                    <a href="/product/admin-view/{{this._id}}" style="cursor: pointer" class="w-100">
+                        <img class="card-img-top" {{#if this.category_image }}src="/{{this.category_image.image_path}}" {{else}} 
+                        src="/images/shirt.jpg"{{/if}}  
+                        style="min-height: 280px !important;max-height: 280px !important; width: 100%; object-fit: cover; border-bottom: 1px solid #acadb1;" alt="Card image cap">
+                    </a>
                 <div class="card-body p-1" style="background: #eeedf1;">
                     <h5 class="card-title mb-1 text-capitalize">{{this.category_title}}</h5>
                     <input type="hidden" class="category_title" value="{{this.category_title}}"> 
@@ -28,7 +30,7 @@
                     <p class="card-text mb-1 text-capitalize"><small>{{this.category_description}}</small></p>
                     <input type="hidden" class="category_description" value="{{this.category_description}}"> 
                 </div>
-                <div class="card-footer d-flex justify-content-center p-2">
+                <div class="card-footer d-flex justify-content-end p-2">
                     {{!-- <form action="/category/update" method="PUT">
                         <input type="hidden" name="category_id" value="{{this._id}}"> --}}
                         <button class="category-button btn btn-dark no-radius btn-sm" 

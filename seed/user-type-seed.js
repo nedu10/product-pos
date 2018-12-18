@@ -1,16 +1,21 @@
 const mongoose = require('mongoose')
 const  UserType = require('../models/user-type')
 
+
 // //setting up DB
-// dbURL = 'mongodb://127.0.0.1:27017/shopping-cart'  //locally installed mongodb
+// dbURL = 'mongodb://nedu10:chukwuemeka11@ds163156.mlab.com:63156/project-pos'  //locally installed mongodb
 
 // mongoose.connect(dbURL, {useNewUrlParser: true})
+// mongoose.connect(dbURL)
 // mongoose.Promise = global.Promise;
+
+// // mongoose.Promise = global.Promise;
+
 
 
 
 const user_type = new UserType({
-    name: 'admin_user'
+    name: 'user'
 })
 
 

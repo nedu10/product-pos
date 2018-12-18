@@ -24,7 +24,9 @@ var UserTypeModel = require('./models/user-type')
 var app = express();
 
 //setting up DB
-dbURL = 'mongodb://127.0.0.1:27017/shopping-cart'  //locally installed mongodb
+// dbURL = 'mongodb://127.0.0.1:27017/shopping-cart'  //locally installed mongodb
+
+dbURL = 'mongodb://nedu10:chukwuemeka11@ds163156.mlab.com:63156/project-pos'
 
 mongoose.connect(dbURL, {useNewUrlParser: true})
 mongoose.Promise = global.Promise;
